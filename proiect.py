@@ -132,3 +132,16 @@ matplotlib.pyplot.ylabel('Nr persoane')
 matplotlib.pyplot.xticks(rotation=45)
 matplotlib.pyplot.legend(title='Sex')
 matplotlib.pyplot.savefig("grafic_task_9.png")
+
+#Task_10
+seaborn.catplot(data=my_file.head(100), x='Pclass', y='Fare', hue='Survived', kind='strip', jitter=True)
+#data=my_file.head(100) specifica ca lucram cu primele 100 de randuri
+#pclass e coloana plasata pe axa x a graficului
+#fare este coloana plasat pe axa y a graficului
+#survived este coloana folosita pentru a colora punctele
+#strip specifica ca vrem sa cream un grafic de puncte
+#jitter adauga o mica distantare intre puncte pentru a le face vizibile in caz ca se suprapun 
+matplotlib.pyplot.title('Relatia dintre tarif, clasa si supravietuire')
+matplotlib.pyplot.xlabel('Clasă')
+matplotlib.pyplot.ylabel('Tarif')
+matplotlib.pyplot.savefig('grafic_task_10.png')
