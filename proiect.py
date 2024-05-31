@@ -50,3 +50,20 @@ for coloana in coloane_cu_numere:
     matplotlib.pyplot.ylabel('Frecvență')
     matplotlib.pyplot.savefig(f"grafic_task_3_{nr}.png")
     nr += 1
+
+#Task_4
+print("\nTask_4:")
+coloane_cu_valori_lipsa = my_file.columns[my_file.isnull().any()].tolist()
+#my_file.isnull().any() seteaza cu True coloanele care au elemente lipsa
+#pasand valoarea ca argument la my_file.columns, selectam doar acele coloane din lista de coloane
+#metoda .tolist() transforma lista pandas intr-o lista python
+for coloana in coloane_cu_valori_lipsa:
+    valori_lipsa = my_file[coloana].isnull().sum()
+    valori_lipsa_percentage = my_file[coloana].isnull().mean() * 100
+    print(f'Col "{coloana}": {valori_lipsa} valori lipsa, procentaj {valori_lipsa_percentage:.2f}%')
+for coloana in coloane_cu_valori_lipsa:
+    supravietuitori = my_file[my_file['Survived'] == 1][coloana].isnull().mean() * 100
+    nonsupravietuitori = 100 - supravietuitori
+    print(f'Col "{coloana}": supravietuitori: {supravietuitori:.2f}%')
+    print(f'Col "{coloana}": nonsupravietuitori: {nonsupravietuitori:.2f}%')
+
