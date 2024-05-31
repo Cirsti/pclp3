@@ -67,3 +67,16 @@ for coloana in coloane_cu_valori_lipsa:
     print(f'Col "{coloana}": supravietuitori: {supravietuitori:.2f}%')
     print(f'Col "{coloana}": nonsupravietuitori: {nonsupravietuitori:.2f}%')
 
+#Task_5
+varsta_maxima = my_file['Age'].max()
+labels = ['0-20', '21-40', '41-60', '61+']
+bins = [0, 20, 40, 60, varsta_maxima]
+my_file['categorie-varsta'] = pandas.cut(my_file['Age'], bins=bins,  labels = labels)
+#metoda cut este folosita pentru a imparti coloana Age in bin uri, cu labeluri din labels
+persoane_pe_categorie = my_file['categorie-varsta'].value_counts()
+matplotlib.pyplot.bar(persoane_pe_categorie.index, persoane_pe_categorie.values, color='skyblue')
+matplotlib.pyplot.title('Nr persoane')
+matplotlib.pyplot.xlabel('Categorie varsta')
+matplotlib.pyplot.ylabel('Nr persoane')
+matplotlib.pyplot.savefig('grafic_task_5.png')
+
