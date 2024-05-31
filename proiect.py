@@ -38,3 +38,15 @@ axs[2].bar(b_f_percentage.index, b_f_percentage.values, color=['lime', 'chocolat
 #al treilea este array ul de culori
 fig.savefig('grafic_task_2.png')
 
+#Task_3
+coloane_cu_numere = my_file.select_dtypes(include=['int64', 'float64'])
+nr = 1
+for coloana in coloane_cu_numere:
+    matplotlib.pyplot.figure(figsize=(8, 6)) #8 in latime si 6 in inaltime
+    matplotlib.pyplot.figure(figsize=(8, 6))
+    matplotlib.pyplot.hist(my_file[coloana], bins=20, color='skyblue', edgecolor='black')
+    matplotlib.pyplot.title(f"{coloana}")
+    matplotlib.pyplot.xlabel('Valoare')
+    matplotlib.pyplot.ylabel('Frecvență')
+    matplotlib.pyplot.savefig(f"grafic_task_3_{nr}.png")
+    nr += 1
