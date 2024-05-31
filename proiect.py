@@ -106,3 +106,11 @@ matplotlib.pyplot.title('Rata supravietuire')
 matplotlib.pyplot.xlabel('Categorie varsta')
 matplotlib.pyplot.ylabel('Procent')
 matplotlib.pyplot.savefig('grafic_task_7.png')
+
+#Task_8
+my_file['Age'] = my_file.groupby(['Pclass', 'Survived'])['Age'].transform(lambda x: x.fillna(x.mean()))
+my_file['Fare'] = my_file.groupby(['Pclass', 'Survived'])['Fare'].transform(lambda x: x.fillna(x.mean()))
+#.groupby(['Pclass', 'Survived']) grupeaza persoanele care au aceeasi clasa si stare de supravietuire
+#metoda .transform aplica o functia asupra fiecarei valori din coloanele selectate
+#pentru metoda transform avem nevoie de o functie, de aceea cream o functie lambda
+#metoda .filna(x.mean()) inlocuieste valorilea lipsa (care sunt setate ca NaN -> NotaNumber) cu media valorilor (x.mean())
