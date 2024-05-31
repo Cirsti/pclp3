@@ -21,3 +21,20 @@ print(f'Nr_col: {nr_col}')
 print(f'Nr linii duplicate: {liniile_duplicate}')
 print(f'Nr valori lipsa:\n{valorile_lipsa}')
 print(f'Data types:\n{data_types}')
+
+#Task_2
+supravietuitori_percentage = my_file['Survived'].mean() * 100
+nesupravietuitori_percentage = 100 - supravietuitori_percentage
+
+class_percentage = my_file['Pclass'].value_counts(normalize='True') * 100
+b_f_percentage = my_file['Sex'].value_counts(normalize='True') * 100
+#metoda .value_counts() calculeaza de cate ori apare fiecare valoare din coloana respectiva
+#normalize='True' transforma numarul de valori intr-o proportie
+fig, axs = matplotlib.pyplot.subplots(1, 3, figsize=(18, 6))
+axs[0].bar(['Supraviețuitori', 'Non-Supraviețuitori'], [supravietuitori_percentage, nesupravietuitori_percentage], color=['blue', 'orange'])
+axs[1].bar(class_percentage.index, class_percentage.values, color=['blue', 'yellow', 'red'])
+axs[2].bar(b_f_percentage.index, b_f_percentage.values, color=['lime', 'chocolate'])
+#primul parametru reprezinta numele pentru label uri, al doilea reprezinta procentajele folosite in chart
+#al treilea este array ul de culori
+fig.savefig('grafic_task_2.png')
+
