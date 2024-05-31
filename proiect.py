@@ -80,3 +80,16 @@ matplotlib.pyplot.xlabel('Categorie varsta')
 matplotlib.pyplot.ylabel('Nr persoane')
 matplotlib.pyplot.savefig('grafic_task_5.png')
 
+#Task_6
+#Gruparea persoanelor in functie de categoria de varsta si separarea dupa gen
+persoane_pe_categorie = my_file.groupby(['categorie-varsta', 'Sex'], observed=False)['Survived'].mean() * 10    0
+#Reorganizarea datelor pentru a fi afisate
+persoane_pe_categorie = persoane_pe_categorie.unstack()
+#Realizarea graficului
+persoane_pe_categorie.plot(kind='bar', color=['blue', 'orange'], figsize=(10, 6))
+matplotlib.pyplot.title('Procent supravietuire')
+matplotlib.pyplot.xlabel('Categorie varsta')
+matplotlib.pyplot.ylabel('Procent supravietuire')
+matplotlib.pyplot.xticks(rotation=45)
+matplotlib.pyplot.legend(title='Sex')
+matplotlib.pyplot.savefig('grafic_task_6.png')
