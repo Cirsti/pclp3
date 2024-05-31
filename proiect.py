@@ -93,3 +93,16 @@ matplotlib.pyplot.ylabel('Procent supravietuire')
 matplotlib.pyplot.xticks(rotation=45)
 matplotlib.pyplot.legend(title='Sex')
 matplotlib.pyplot.savefig('grafic_task_6.png')
+
+#Task_7
+categorie_copii = my_file[my_file['Age'] < 18]
+#my_file[my_file['Age'] < 18] selecteaza doar randurile cu persoanele cu varsta < 18
+procentaj_copii = len(categorie_copii) / (len(my_file) - 1) * 100
+#len(my_file) este numarul total de de persoane
+rata_supravietuire_copii = (categorie_copii['Survived'] == 1).mean() * 100
+rata_supravietuire_adulti = (my_file[my_file['Age'] >= 18]['Survived'] == 1).mean() * 100
+matplotlib.pyplot.bar(['Copii', 'Adulti'], [rata_supravietuire_copii, rata_supravietuire_adulti], color=['blue', 'orange'])
+matplotlib.pyplot.title('Rata supravietuire')
+matplotlib.pyplot.xlabel('Categorie varsta')
+matplotlib.pyplot.ylabel('Procent')
+matplotlib.pyplot.savefig('grafic_task_7.png')
