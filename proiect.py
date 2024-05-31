@@ -114,3 +114,21 @@ my_file['Fare'] = my_file.groupby(['Pclass', 'Survived'])['Fare'].transform(lamb
 #metoda .transform aplica o functia asupra fiecarei valori din coloanele selectate
 #pentru metoda transform avem nevoie de o functie, de aceea cream o functie lambda
 #metoda .filna(x.mean()) inlocuieste valorilea lipsa (care sunt setate ca NaN -> NotaNumber) cu media valorilor (x.mean())
+
+
+#Task_9
+nume_noblime = my_file['Name'].str.split(',') #desparte textul in functie de virgule
+nume_noblime = nume_noblime.str[1] #extrage partea care contine numele si prenumele
+nume_noblime = nume_noblime.str.split('.') #desparte textul in functie de .
+nume_noblime = nume_noblime.str[0].str.strip()
+#str[0] este titlu de noblime, iar str.strip() sterge eventualele spatii albe de la inceput si sfarsit
+my_file['titlu_de_noblime'] = nume_noblime
+corespondenta_noblime = my_file.groupby(['titlu_de_noblime', 'Sex']).size().unstack()
+#groupby grupeaza data frame ul dupa coloanele title_de_noblime si Sex
+corespondenta_noblime.plot(kind='bar', stacked=True)
+matplotlib.pyplot.title('Corespondenta')
+matplotlib.pyplot.xlabel('titlu_de_noblime')
+matplotlib.pyplot.ylabel('Nr persoane')
+matplotlib.pyplot.xticks(rotation=45)
+matplotlib.pyplot.legend(title='Sex')
+matplotlib.pyplot.savefig("grafic_task_9.png")
